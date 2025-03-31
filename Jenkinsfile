@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Cloning the repository..."
-                git branch: '{master/main}', url: 'https://github.com/AnoopMandal/taskmanagement-app.git'
+                git branch: 'master', url: 'https://github.com/AnoopMandal/taskmanagement-app.git'
             }
         }
 
