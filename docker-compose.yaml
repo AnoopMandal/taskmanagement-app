@@ -1,0 +1,33 @@
+#write the content for docker-compose yaml here
+version: '2.29.7'
+
+services:
+  taskmanagement-app:
+    image: taskmanagement-app-image:latest
+    container_name: taskmanagement-app
+    ports:
+      - "8082:8081"
+    networks:
+      - taskmanagement-network
+    depends_on:
+      - mysql-db
+  
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@123
+      MYSQL_DATABASE: taskmanagementdb
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - taskmanagement-network
+    
+networks:
+  taskmanagement-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
